@@ -1,0 +1,38 @@
+version: 1
+applications:
+  - appRoot: react-app
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - node -v # Node.jsバージョン確認
+            - npm install
+        build:
+          commands:
+            - npm run build
+      artifacts:
+        baseDirectory: dist
+        files:
+          - "**/*"
+      cache:
+        paths:
+          - .npm/**/*
+          - node_modules/**/*
+  - appRoot: sveltekit-app
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - node -v
+            - npm install
+        build:
+          commands:
+            - npm run build
+      artifacts:
+        baseDirectory: build
+        files:
+          - "**/*"
+      cache:
+        paths:
+          - .npm/**/*
+          - node_modules/**/*
